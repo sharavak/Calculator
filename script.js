@@ -39,32 +39,6 @@ for (let b of buttons) {
         values = numbers.toString().replaceAll(',', '');
     })
 }
-document.addEventListener('keyup', (e) => {
-    let r=[];
-    if (e.key === 'Backspace') {
-        r = numbers.toString().split();
-        r.pop();
-        numbers = r.slice();
-        text.value = numbers.toString().replaceAll(',', '');
-    }
-    else if (e.key === '=') {
-        try {
-            text.value = infixToPostfix(values);
-        } catch { text.value='SYNTAX ERROR'}
-        onOrOff();
-        numbers.push(text.value.toString().substring(text.value.toString().lastIndexOf('R')+1));
-    }
-
-    else if ("0123456789/x+-.*".includes(e.key)) {
-        numbers.push(e.key);
-        values = numbers.toString().replaceAll(',', '');
-        if (text.value.includes("SYN")) text.value = values;
-    } else {
-        
-        text.value = '';
-        onOrOff();
-    }
-})
 function getPrecedence(ch){
     if(ch === '/' || ch==='x' || ch==='*')
         return 2;
